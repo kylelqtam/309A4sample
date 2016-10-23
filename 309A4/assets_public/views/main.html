@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="author" content="Nigel, Lucas, Sheldon, Kyle" />
+        <meta name="description" content="Assignment for CSC309" />
+        <!-- Mobile sizing: -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="../styles/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="../styles/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../styles/style.css" rel="stylesheet" type="text/css"/>
+        <script></script>
+        <title>Shifter !!</title>
+    </head>
+    <body id="body-profile">
+        <nav id="mainNav">
+            <ul>
+                <li class="element-search">
+                    <form action="/search" id="navSearch">
+                        <input class="searchInput searchElement" type="text" id="searchQuery" placeholder="Search Shifter" name="q" autocomplete="off" spellcheck="false">                                <select name="searchOpt" id="searchOpt">
+                            <option value="person">Person</option>
+                            <option value="store">Store</option>
+                        </select>
+                        <button type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </li>
+                <li class="element-shift">
+                    <a href="#" id="shifter" title="Shift your shift, shifter">
+                        <i class="fa fa-plus-square"></i> <span>Shifter</span>
+                    </a>
+                </li>
+                <li class="element-user dropControl dropStyle">
+                    <figure id="userNavPhoto">
+                        <img src="../images/default_user.svg" alt="User profile photo">
+                    </figure>
+                    <div class="userMenu">
+                        <div class="userItem">
+                            <a href="./profile.html" title="Profile"><i class="fa fa-user"></i> <span id="mainNav_username"></span></a>
+                        </div>
+                        <div class="userItem"><a href="#" title="Edit Profile"><i class="fa fa-paint-brush"></i> <span>Edit Profile</span></a></div>
+                        <div class="userItem"><a href="./login.html" title="Log out"><i class="fa fa-times"></i> <span>Log out</span></a></div>
+                    </div>
+                </li>
+                <li class="element-messages"><a href="./messages.html" id="message" class="attention" title="Messages"><i class="fa fa-comments"></i> <span>Messages</span></a></li>
+                <li class="element-notifications notifElement"><a href="#" id="notification" title="Notifications"><i class="fa fa-bell"></i> <span>Notifications</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="wrapper" id="mainApp">
+        	<main id="main-profile">
+				<section class="searchElement" id="searchResult">
+					<ul id="list-search-result">
+					</ul>
+				</section>
+                <section class="notifElement" id="notifBlock">
+					<ul id="list-notifications">
+					</ul>
+				</section>
+				<section class="sections-profile" id="section-personal-info">
+					<ul id="list-personal-info">
+					</ul>
+				</section>
+				<section class="sections-profile" id="section-current-history">
+					<ul id="list-current-history">
+                        <li class="li-current-history"><a href="#section-history">History</a></li>
+					</ul>
+                    <section id="section-history">
+                        <ul class="list-status" id="list-history-status">
+                            <li>
+                                <figure>
+                                    <img src="../images/dot-green.svg" alt="Succeed">
+                                </figure>
+                                <aside>
+                                    <h5><a href="#">Accepted from Diane Horton</a></h5>
+                                    <h6>On time, started at 9:00 AM Sunday, July 10, 2016 (EDT) </h6>
+                                    <h6>Finished at 6:00 PM Sunday, July 10, 2016 (EDT)</h6>
+                                    <h6>Rating placeholder</h6>
+                                </aside>
+                            </li>
+                            <li>
+                                <figure>
+                                    <img src="../images/dot-red.svg" alt="Succeed">
+                                </figure>
+                                <aside>
+                                    <h5><a href="#">Accepted from David Liu</a></h5>
+                                    <h6>Not show</h6>
+                                    <h6>Not show</h6>
+                                    <h6>Rating placeholder</h6>
+                                </aside>
+                            </li>
+                            <li>
+                                <figure>
+                                    <img src="../images/dot-yellow.svg" alt="Succeed">
+                                </figure>
+                                <aside>
+                                    <h5><a href="#">Accepted from David Liu</a></h5>
+                                    <h6>Late, started at 10:00 AM Monday, July 12, 2016 (EDT)</h6>
+                                    <h6>Finished at 6:00 PM Monday July 12, 2016 (EDT)</h6>
+                                    <h6>Rating placeholder</h6>
+                                </aside>
+                            </li>
+                        </ul>
+                    </section>
+				</section>
+				<section class="sections-profile" id="section-friends">
+					<ul id="list-friends">
+						<li class="list-online"><a>
+							<aside>
+                                <h5>Diane Horton</h5>
+								<h6>online</h6>
+                            </aside>
+							</a>
+						</li>
+					</ul>
+				</section>
+			</main>
+
+        </div> <!-- close wrapper -->
+
+        <div id="shifterModal" class="modalBackground fadeIn"><!-- Phase 1 only: shown/hidden with js -->
+            <div class="modalWrap">
+                <div class="modalMain scaleIn">
+                    <!-- <span class="closeThisX">×</span> -->
+                    <h1>Find Someone to Cover Your Shift</h1>
+
+                    <form action="/newshift" method="post" id="shiftForm">
+                        <!-- <h2>Streamlined Question View</h2> -->
+
+                        <!-- Recall: The for attribute of the <label> tag should be equal to the id attribute of the related element to bind them together, unless theres explicit nesting. -->
+
+                        <div class="modalSubAligner">
+                            <!-- <div class="optionItem">Location</div> -->
+                            <label for="shiftPlace">
+                                <span class="optionItem">Location</span> 
+                                <!-- Results from db query of users places: -->
+                                <!-- better UX to sort by most commonly used. -->
+                                <select name="shiftPlace" id="shiftPlace">
+                                    <option value="McDonalds">McDonalds</option>
+                                    <option value="Oneils Pub">Oneils Pub</option>
+                                    <option value="Club Monaco">Club Monaco</option>
+                                </select>
+                            </label>
+                        </div>
+                        
+                        <div class="modalSubAligner">
+                            <label for="shiftStartDate">
+                                <span class="optionItem">Start</span> 
+                                <!-- type="date" is not supported in Internet Explorer 10 and earlier versions. -->
+                                <input id="shiftStartDate" type="date" name="shiftStartDate" placeholder="YYYY-MM-DD">
+                            </label>
+
+                            <label for="shiftStartTime">
+                                <!-- <span class="optionItem">Time</span>  -->
+                                <!-- type="time" is not supported in Firefox, or Internet Explorer 10 and earlier versions. -->
+                                <input id="shiftStartTime" type="time" name="shiftStartTime" placeholder="HH:MM A/PM">
+                            </label>
+                        </div>
+                        
+                        <div class="modalSubAligner">
+                            <label for="shiftEndDate">
+                                <span class="optionItem">End</span> 
+                                <!-- type="date" is not supported in Internet Explorer 10 and earlier versions. -->
+                                <input id="shiftEndDate" type="date" name="shiftEndDate" placeholder="YYYY-MM-DD">
+                            </label>
+
+                            <label for="shiftEndTime">
+                                <!-- <span class="optionItem">Time</span>  -->
+                                <!-- type="time" is not supported in Firefox, or Internet Explorer 10 and earlier versions. -->
+                                <input id="shiftEndTime" type="time" name="shiftEndTime" placeholder="HH:MM A/PM">
+                            </label>
+                        </div>
+                        
+                        <div class="modalSubAligner">
+                            <label for="shiftDescription">
+                                <span class="optionItem display-table-cell">Description [Optional]</span> 
+                                <!-- type="date" is not supported in Internet Explorer 10 and earlier versions. -->
+                                <textarea id="shiftDescription" name="shiftDescription" placeholder="Enter text here..."></textarea>
+                            </label>
+                        </div>
+
+                        <div class="modalSubAligner">
+                            <label for="shiftIncentive">
+                                <span class="optionItem">Incentive [Optional]</span> 
+                                <!-- type="date" is not supported in Internet Explorer 10 and earlier versions. -->
+                                <input id="shiftIncentive" type="number" name="shiftIncentive" placeholder="$5">
+                            </label>
+                        </div>
+                                            
+                        <ul id="shiftFormActions">
+                            <li><button id="shiftCancel" type="button">Cancel</button></li>
+                            <li><input id="shiftCreate" type="submit" value="Create (link d.n.e.)"></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+		
+		<footer>
+            Shifter | Created by Fong-Dong-Ju-Tam
+        </footer>
+		<script src="../libs/jquery-3.0.0.min.js"></script>
+		<script src="../scripts/script-main.js"></script>
+	</body>
+</html>
